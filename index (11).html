@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es"> <!-- Define o idioma da página como espanhol -->
+
+<head>
+  <!-- Define a codificação de caracteres e a responsividade da página -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Título da aba do navegador -->
+  <title>Feliz Cumpleaños, Bianca!</title>
+
+  <!-- Importação de fontes do Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* Reset de margens e caixas para todos os elementos */
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Estilo base do corpo da página */
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Tema escuro adaptado ao sistema do usuário */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #1e144f;
+      }
+
+      .container {
+        background: rgba(30, 20, 79, 0.85);
+      }
+
+      .right p,
+      .footer,
+      .socials a {
+        color: #fbd1dc;
+      }
+    }
+
+    /* Animação para entrada suave do conteúdo */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Animação para efeito de brilho */
+    @keyframes sparkle {
+      0% {
+        opacity: 0.4;
+        transform: scale(1);
+      }
+
+      100% {
+        opacity: 0.6;
+        transform: scale(1.05);
+      }
+    }
+
+    /* Container principal da página */
+    .container {
+      width: 95%;
+      max-width: 1100px;
+      background: rgba(249, 191, 207, 0.5);
+      display: flex;
+      flex-direction: row;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+      animation: fadeInUp 0.8s ease;
+    }
+
+    /* Lado esquerdo do layout com imagem e brilho */
+    .left {
+      width: 40%;
+      background-size: cover;
+      position: relative;
+      min-height: 300px;
+    }
+
+    /* Frase decorativa sobre a imagem à esquerda */
+    .left::after {
+      content: "Tu cumpleaños es especial, y quiero que sepas que te quiero";
+      white-space: pre-line;
+      position: absolute;
+      top: 40px;
+      left: 30px;
+      font-size: 1.8em;
+      color: white;
+      font-family: 'Great Vibes', cursive;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    /* Efeitos brilhantes decorativos */
+    .left::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 70%),
+        radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      animation: sparkle 6s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    /* Lado direito com perfil e mensagens */
+    .right {
+      width: 60%;
+      padding: 40px 30px;
+      color: #fff;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Container para a imagem de perfil */
+    .perfil-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    /* Estilo da imagem de perfil */
+    .foto-perfil {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Navegação de categorias */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    /* Estilo dos botões da navegação */
+    nav button {
+      background: none;
+      border: none;
+      color: #1e144f;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1em;
+    }
+
+    nav button.disabled {
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    nav button.active {
+      text-decoration: underline;
+    }
+
+    /* Nome e título da homenagem */
+    .right h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5em;
+      color: #1e144f;
+      margin: 0;
+      text-align: center;
+    }
+
+    .right h1 {
+      font-size: 1.7em;
+      font-weight: 700;
+      margin: 10px 0;
+      color: white;
+      text-align: center;
+    }
+
+    .right p {
+      font-size: 1em;
+      color: #442e4d;
+      text-align: center;
+    }
+
+    /* Container dos botões inferiores */
+    .buttons {
+      margin-top: auto;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Estilo comum dos botões */
+    .btn {
+      padding: 10px 16px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-confirm {
+      background-color: #1e144f;
+      color: white;
+    }
+
+    .btn-date {
+      background-color: #d12f7a;
+      color: white;
+    }
+
+    /* Rodapé com nome da música */
+    .footer {
+      font-size: 14px;
+      color: #1e144f;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    /* Ícones sociais decorativos */
+    .socials {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+      justify-content: center;
+    }
+
+    .socials a {
+      text-decoration: none;
+      color: #1e144f;
+      font-size: 16px;
+    }
+
+    /* Exibição das mensagens e nomes */
+    #mensagens,
+    #nomes {
+      margin-top: 20px;
+      color: #1e144f;
+      transition: opacity 0.5s ease;
+      opacity: 1;
+      text-align: center;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.3s forwards;
+    }
+
+    .fade-out {
+      animation: fadeOut 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+    }
+
+    /* Botões com nomes */
+    .nome-btn {
+      margin: 5px;
+      padding: 8px 12px;
+      border-radius: 5px;
+      background-color: #fff;
+      color: #d12f7a;
+      font-weight: bold;
+      border: 1px solid #d12f7a;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nome-btn:hover {
+      background-color: #d12f7a;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    /* Balão flutuante decorativo */
+    #balon {
+      display: none;
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3em;
+      animation: flotar 2s ease-in-out infinite alternate;
+    }
+
+    /* Responsividade para telas menores */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        width: 95%;
+        margin: 10px;
+      }
+
+      .left {
+        width: 100%;
+        height: 250px;
+      }
+
+      .left::after {
+        font-size: 1.4em;
+        top: 20px;
+        left: 15px;
+        right: 15px;
+      }
+
+      .right {
+        width: 100%;
+        padding: 20px;
+      }
+
+      .right h2 {
+        font-size: 2em;
+      }
+
+      .right h1 {
+        font-size: 1.3em;
+      }
+
+      .right p {
+        font-size: 1em;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn,
+      .nome-btn {
+        width: 100%;
+        font-size: 1em;
+      }
+
+      #balon {
+        font-size: 2em;
+        top: 10%;
+      }
+
+      .footer {
+        font-size: 0.9em;
+      }
+
+      .socials {
+        font-size: 14px;
+      }
+    }
+
+    /* Sparkle adicional para fundo da esquerda */
+    .left .sparkle {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .left .sparkle::before,
+    .left .sparkle::after {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+      animation: shimmer 10s linear infinite;
+      opacity: 0.4;
+    }
+
+    .left .sparkle::after {
+      animation-delay: 5s;
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    /* Contador de tempo para a festa */
+    .countdown-timer {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 1.2em;
+      font-weight: bold;
+      padding: 10px 15px;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
+      background-color: #d12f7a;
+      z-index: 2;
+    }
+
+    /* Imagem personalizada do mural */
+
+
+    .sparkle {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(gold, gold);
+      clip-path: polygon(50% 0%,
+          61% 35%,
+          98% 35%,
+          68% 57%,
+          79% 91%,
+          50% 70%,
+          21% 91%,
+          32% 57%,
+          2% 35%,
+          39% 35%);
+      animation: twinkle 1s ease-out;
+      pointer-events: none;
+    }
+
+    @keyframes twinkle {
+      0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.5) rotate(15deg);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: scale(0.5) rotate(-15deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left">
+      <div id="countdown" class="countdown-timer"></div>
+    </div>
+
+    <div class="right">
+      <div class="perfil-container">
+        <img src="bibi.png" alt="Foto de perfil de Bianca" class="foto-perfil">
+      </div>
+
+
+
+      <nav>
+        <button onclick="mostrarNomes('familia')" id="btn-familia">FAMILIA</button>
+        <button onclick="mostrarNomes('cercanos')" id="btn-cercanos">CERCANOS</button>
+        <button onclick="mostrarNomes('cariño')" id="btn-cariño">CARIÑO</button>
+        <button onclick="mostrarNomes('sorpresa')" id="btn-sorpresa" class="disabled">SORPRESA</button>
+      </nav>
+
+      <h2>Bianca</h2>
+      <h1>Estamos agradecidos de tenerte con nosotros</h1>
+      <p>Un cumpleaños es solo el primer día de otro viaje de 365 días alrededor del sol. Disfruta el viaje.</p>
+
+      <div id="nomes"></div>
+      <div id="mensagens"></div>
+
+      <div class="buttons">
+        <button class="btn btn-confirm" onclick="toggleMusic()">♫ Música</button>
+        <button id="btn-brilho" class="btn btn-date"> 24 • 05 • 25 </button>
+      </div>
+
+      <div class="footer">The Temptations - My Girl</div>
+      <div class="socials">
+        <a href="#">⭑</a>
+        <a href="#">⭑</a>
+        <a href="#">⭑</a>
+        <a href="#">⭑</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const mensagens = {
+      familia: {
+        Mamãe: "Feliz aniversário pra você, meu amor! Na verdade, você é o meu presente! Só tenho gratidão a Deus pela sua vida. Linda por dentro e por fora, carinhosa, amiga e, acima de tudo, uma parceira incrível.Eu sei que o teu futuro será brilhante, porque a bênção de Deus está sobre você. Estarei sempre ao teu lado, meu amor. Te amo muito! ",
+        Papai: "Olá, minha filha! Vim lembrar que você é especial. O mundo precisa do seu brilho, da sua voz e da sua presença. Então, vá em frente, conquiste seus sonhos e faça a diferença. Meus parabéns, feliz aniversário! Que Deus direcione todos os seus passos na direção certa, com alegria, paz e amor. Que você usufrua do melhor de Deus nesta terra. Que Ele te abençoe sempre!",
+        Thati: "Hoje é um dos dias mais importantes da minha vida: o dia em que celebro a sua existência, Bianquete. Ter você como irmã é um dos maiores presentes que o Senhor me deu, e comemorar mais um ano da sua vida é, para mim, motivo de profunda gratidão a Deus. Sei o quanto Ele foi detalhista ao te colocar como minha irmã. Sem a menor dúvida, não existe alguém que te admire mais e que acredite tanto nos seus sonhos quanto eu. Uma das coisas que mais revela o quanto você é especial para mim é o fato de que você tem cheiro de casa. Estar com você é confortável, é seguro. Você tem um dom raro de transformar qualquer lugar em lar, simplesmente por estar presente. Algo que me inspira profundamente em você é a sua dedicação, a mulher virtuosa que você é e a excelência com que faz tudo o que se propõe. Como é bom poder compartilhar os sonhos de Deus com você. Tenho certeza de que você será uma grande pastora de mulheres, porque é exatamente assim que eu já te enxergo. Quero declarar, em nome de Jesus, que este será apenas o começo das grandes realizações dos sonhos de Deus na sua vida. Te amo!",
+        Anderson: "Mais um aninho de vida, né, meu amor? Ainda lembro da primeira vez que te peguei no colo… O amor que sinto por ti é imenso, assim como o orgulho que tenho da mulher incrível que você se tornou. Feliz aniversário, irmãzinha! Que Deus realize todos os teus sonhos conforme a vontade d’Ele, e que tua vida seja repleta de sucesso, conquistas e muitas realizações. Te amo demais! Ass: Teu irmão coroa.",
+      },
+      cercanos: {
+        Taty: "Oiii, Bibiii. Quero te desejar um feliz aniversário e te dizer que te amo e te admiro profundamente. Quando olho pra você, vejo a bondade do Senhor na minha vida. Você é amável, empática, sempre disponível pra ajudar. É aquela que tem uma palavra certeira, direcionada pelo Espírito. Você é sábia, esforçada e tem um coração lindo. Como eu te admiro. Como sou grata ao Senhor por ter me presenteado com uma irmã que me ensina tanto. Você ministra ao meu coração muito mais do que imagina. Amo te ter por perto, conversar com você, viver Jesus com você. Amo ser sua irmã, e saiba: eu tenho MUITO orgulho da mulher de Deus que você é. Jesus ainda vai fazer tanto na tua vida, irmã, e eu estarei sempre na primeira cadeira, morrendo de orgulho, te aplaudindo de perto. Eu oro pela sua família, pelo seu casamento, por tudo aquilo que o Senhor está preparando pra você. Oro pra que todos os desejos do seu coração, alinhados com os do Pai, se concretizem. Oro pra que você seja muito feliz e realizada em todas as áreas da sua vida. Estarei aqui, me alegrando junto com você por cada conquista. Você é gigante, Bibi. Nunca duvide disso. Eu te amo. Obrigada por tudo o que você significa na minha vida. Obrigada por estar aqui sempre. Obrigada por ser boca de Deus pra mim. Conta comigo, irmã. Sempre.",
+        Danielzinho: "Feliz aniversário, minha irmã! Você é tão especial que já faz parte da família. Sou muito grata por ver tudo o que o Senhor tem feito na sua vida, e creio que Ele continuará te abençoando e te fazendo crescer em todas as áreas. Não tenho palavras para agradecer por tantos momentos divertidos e valiosos que você e sua família me proporcionaram. Oro para que, nessa nova fase, você continue buscando a presença do Senhor Jesus e vivendo com sabedoria. Conte sempre comigo!",
+        SeuCheirinho: "Feliz vida, meu cheirinho! Como meu coração se enche de gratidão por te ter tão pertinho. Você é um presente raro, doce e cheio da presença de Jesus! Declaro sobre sua vida um tempo de colheita, de respostas claras e de avanços! Que sua fé continue firme, seu coração leve e seu caminho cheio de paz. Bianquete, que o Senhor te leve mais fundo, mais alto e mais perto dEle a cada dia! Te amo demais, e você carrega algo precioso!",
+      },
+      cariño: {
+        Kevin: "Amor, quero reafirmar o quanto eu amo e honro a sua vida — em todas as formas. Sou eternamente grato a Deus pelos momentos que já vivemos juntos, e por aqueles que ainda virão, porque eu sei: muitos virão. Você tem transformado a minha vida de um jeito tão profundo que já não me imagino mais sem você. Sem você, tudo perde a graça, perde a cor, perde a leveza… Mas com você, cada dia é incrível — perto ou longe, você faz tudo valer a pena. E eu sei: esse é só o começo das grandes coisas que o Senhor está fazendo em sua vida. Eu te amo, meu bem. Feliz aniversário.",
+      },
+      sorpresa: {
+        DiegoPrieTheo: "Feliz aniversário! Que Deus te abençoe poderosamente, ilumine teus caminhos, fortaleça tua fé e teu coração. Você nos inspira com sua dedicação e amor pelas vidas. Que neste novo ano o Senhor realize os desejos do teu coração e encha os teus dias de alegria. Deus te abençoe — amamos você!",
+        LucaseJu: "Oi, Bianca! Que dia especial, né? Somos muito felizes por ter por perto uma pessoa como você: calma, cautelosa, esforçada, inteligente... uma filha e irmã exemplar, uma líder dedicada. São tantas qualidades que até procuramos por pontos de melhoria (sabemos que existem, rsrs). Mas como diz a Palavra em 1 Timóteo 4:12: “Ninguém despreze a tua mocidade; pelo contrário, torna-te padrão dos fiéis, na palavra, no procedimento, no amor, na fé e na pureza.” Vemos essas características em seu comportamento, filha. Você é exemplo não só para sua geração, mas para nós também, enquanto seus coordenadores. Sempre aprendemos com você e com o zelo que tem pelos seus liderados. Neste novo ciclo, declaramos projetos lindos vindo do coração de Deus, e desejamos que você seja ainda mais feliz na faculdade, nas suas relações de modo geral, e que tenha muita saúde em todas as áreas da sua vida. Feliz novo ciclo! Conte conosco para viver mais um ano incrível! Com carinho, Seus coords, Lucas e Juliana",
+        Thata: "Bibi, que alegria é celebrar você neste dia lindo! Um dia que o Senhor escolheu para te trazer a este mundo e alegrar nossos dias. Sua doçura, seu sorriso e seu amor são a sua marca. É impossível pensar em você e não lembrar do seu sorriso marcante e da sua fala mansa. Além de ser apaixonada e leal a Deus, você é comprometida com tudo o que Ele te confiou. Parabéns, Bibi! Muitos anos de vida, paz, saúde e felicidades. Eu te amo. Obrigada pelo seu amor pela nossa família. ",
+        Eli: "Oi, filhona! Primeiramente, queremos dizer que sentimos saudades. Você carrega o nosso coração, o nosso amor e a nossa mais profunda admiração. É daquelas pessoas que temos orgulho de conhecer — e mais ainda, de chamar de nossa. Você marcou nossas vidas com amor, gentileza e obediência. Sua alegria ilumina o nosso coração, e ver você avançando nos emociona profundamente. Mas este é o tempo. Deus te deu asas, então voe. Voe em direção às promessas, voe em direção aos seus sonhos, voe em direção às suas convicções — mas lembre-se: você tem onde pousar. Estaremos sempre aqui, prontos para ouvir, amar e impulsionar você. Eu declaro um tempo de favor de Deus sobre a sua vida e sobre cada uma das suas orações. Um tempo de respostas — não conforme o que você tem pedido, mas além. Porque o nosso Deus é assim: Ele vai além! Quero terminar dizendo: você faz Deus sorrir. Feliz aniversário! Nós te amamos demais."
+      }
+    };
+    localStorage.removeItem("visitados");
+
+    const visitados = JSON.parse(localStorage.getItem("visitados")) || {
+      familia: false,
+      cercanos: false,
+      cariño: false,
+    };
+
+    let grupoAtivo = null;
+
+    function verificarAcessoSorpresa() {
+      if (visitados.familia && visitados.cercanos && visitados.cariño) {
+        document.getElementById("btn-sorpresa").classList.remove("disabled");
+      }
+    }
+
+    let grupoVisivel = null; // Variável para controlar o grupo visível
+
+    function mostrarNomes(grupo) {
+      const nomesDiv = document.getElementById("nomes");
+      const mensagensDiv = document.getElementById("mensagens");
+
+      // Se o mesmo grupo for clicado duas vezes, esconde as mensagens
+      if (grupoVisivel === grupo) {
+        nomesDiv.innerHTML = "";
+        mensagensDiv.innerHTML = "";
+        grupoVisivel = null;
+
+        // Remove a classe de "ativo" do botão
+        const btns = document.querySelectorAll("nav button");
+        btns.forEach(btn => btn.classList.remove("active"));
+        return;
+      }
+
+      // Se outro grupo for clicado, exibe suas mensagens
+      if (grupoVisivel !== null) {
+        // Limpa o grupo anterior
+        document.getElementById("nomes").innerHTML = "";
+        document.getElementById("mensagens").innerHTML = "";
+      }
+
+      // Exibe o novo grupo
+      nomesDiv.innerHTML = "";
+      mensagensDiv.innerHTML = "";
+
+      const nomes = Object.keys(mensagens[grupo]);
+      nomes.forEach(nome => {
+        nomesDiv.innerHTML += `<button class="nome-btn" onclick="mostrarMensagem('${grupo}', '${nome}')">${nome}</button>`;
+      });
+
+      // Marca o botão como ativo
+      const btns = document.querySelectorAll("nav button");
+      btns.forEach(btn => btn.classList.remove("active"));
+      document.getElementById(`btn-${grupo}`).classList.add("active");
+
+      grupoVisivel = grupo; // Marca o grupo como visível
+    }
+
+    let mensagemVisivel = {
+      grupo: null,
+      nome: null
+    };
+
+    function mostrarMensagem(grupo, nome) {
+      const mensagensDiv = document.getElementById("mensagens");
+
+      // Se a mesma mensagem estiver visível, esconde
+      if (mensagemVisivel.grupo === grupo && mensagemVisivel.nome === nome) {
+        mensagensDiv.classList.remove("fade-in");
+        mensagensDiv.classList.add("fade-out");
+        setTimeout(() => {
+          mensagensDiv.innerHTML = "";
+        }, 300);
+        mensagemVisivel = {grupo: null, nome: null};
+        return;
+      }
+
+      // Senão, mostra a nova mensagem
+      mensagensDiv.classList.remove("fade-out");
+      mensagensDiv.classList.add("fade-in");
+      mensagensDiv.innerHTML = `${mensagens[grupo][nome]}`;
+      mensagemVisivel = {grupo, nome};
+
+      visitados[grupo] = true;
+      localStorage.setItem("visitados", JSON.stringify(visitados));
+      verificarAcessoSorpresa();
+    }
+
+
+    function toggleMusic() {
+      const audio = new Audio('musica.mp3');
+      audio.play();
+    }
+
+    function getNextBirthday() {
+      const now = new Date();
+      const year = now.getMonth() > 4 || (now.getMonth() === 4 && now.getDate() > 5) ? now.getFullYear() + 1 : now.getFullYear();
+      return new Date(year, 4, 5); // 5 de maio
+    }
+
+    function getNextBirthday() {
+      return new Date("2026-05-24T00:00:00");
+    }
+    function updateCountdown() {
+      const now = new Date();
+      const birthday = getNextBirthday();
+      const diff = birthday - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      const el = document.getElementById("countdown");
+      el.innerHTML = `Faltam ${days}d ${hours}h ${minutes}m ${seconds}s para o aniversário da Bianca 🎉`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    function espalharBrilhos() {
+      for (let i = 0; i < 100; i++) {
+        const brilho = document.createElement("div");
+        brilho.className = "sparkle";
+        brilho.style.left = `${Math.random() * window.innerWidth}px`;
+        brilho.style.top = `${Math.random() * window.innerHeight}px`;
+        document.body.appendChild(brilho);
+
+        // Remove depois da animação
+        setTimeout(() => brilho.remove(), 1000);
+      }
+    }
+
+    function tocarSomBrilho() {
+      const som = new Audio("brilhos.mp3");
+      som.currentTime = 0;
+      som.play();
+    }
+
+
+
+    document.querySelector(".btn.btn-date").addEventListener("click", () => {
+      espalharBrilhos();
+      tocarSomBrilho();
+    });
+
+
+
+  </script>
+</body>
+
+</html>
